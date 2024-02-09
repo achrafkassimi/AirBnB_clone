@@ -1,5 +1,5 @@
-#0x00. AirBnB clone - The console
-##1-description of the project : 
+# 0x00. AirBnB clone - The console
+## description of the project : 
 
 I know you were waiting for it: it’s here!
 
@@ -16,7 +16,7 @@ You won’t implement all the features, only some of them to cover all fundament
 
 ![Screenshot of The console will be a tool to validate this storage engine.](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240209%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240209T204020Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=126830d6a3f0c93e37f34d7a1b32b1947278a6fe84bf3c54d632d6bdcd0a16cc)
 
-###The console
+## The console
 create your data model
 manage (create, update, destroy, etc) objects via a console / command interpreter
 store and persist objects to a file (JSON file)
