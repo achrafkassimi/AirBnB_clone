@@ -14,7 +14,7 @@ You won’t implement all the features, only some of them to cover all fundament
 	- A database or files that store data (data = objects)
 	- An API that provides a communication interface between the front-end and your data (retrieve, create, delete, update them)
 
-![Screenshot of The console will be a tool to validate this storage engine.](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240209%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240209T204020Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=126830d6a3f0c93e37f34d7a1b32b1947278a6fe84bf3c54d632d6bdcd0a16cc)
+![Screenshot of The console will be a tool to validate this storage engine.](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png)
 
 ## The console
 create your data model
