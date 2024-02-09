@@ -16,6 +16,8 @@ You won’t implement all the features, only some of them to cover all fundament
 
 ![Screenshot of The console will be a tool to validate this storage engine.](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png)
 
+<p><img src="https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240209%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240209T204020Z&amp;X-Amz-Expires=86400&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=126830d6a3f0c93e37f34d7a1b32b1947278a6fe84bf3c54d632d6bdcd0a16cc" alt="" loading="lazy" style=""></p>
+
 ## The console
 create your data model
 manage (create, update, destroy, etc) objects via a console / command interpreter
