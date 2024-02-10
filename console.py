@@ -19,7 +19,7 @@ class HBNBCommand(cmd.Cmd):
     Attributes HBNBCommand console class
     """
     prompt = "(hbnb) "
-    valid_classes = ["BaseModel", "User", "Amenity", "Place", "Review", 
+    valid_classes = ["BaseModel", "User", "Amenity", "Place", "Review",
                      "State", "City"]
 
     def emptyline(self):
@@ -46,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
         """
         print("Quit command to exit the program")
         print()
-    
+
     def do_show(self, arg):
         """
         Show the string representation of an instance
@@ -67,7 +67,6 @@ class HBNBCommand(cmd.Cmd):
                 print(obj[key])
             else:
                 print("** no instance found **")
-
 
     def do_create(self, arg):
         """
@@ -125,7 +124,6 @@ class HBNBCommand(cmd.Cmd):
                 if key.split('.')[0] == com[0]:
                     print(str(value))
 
-
     def do_all_class(self, arg):
         """
         Print the string representation of all class.
@@ -138,7 +136,6 @@ class HBNBCommand(cmd.Cmd):
         print("tous les class rempli:")
         for key, value in obj.items():
             print(key)
-
 
     def do_update(self, arg):
         """
@@ -166,7 +163,6 @@ class HBNBCommand(cmd.Cmd):
                 obj = obj[key]
                 att_name = com[2]
                 att_val = com[3]
-                
                 try:
                     att_val = eval(att_val)
                 except Exception:
