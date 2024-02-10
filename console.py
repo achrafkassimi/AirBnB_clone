@@ -19,7 +19,8 @@ class HBNBCommand(cmd.Cmd):
     Attributes HBNBCommand console class
     """
     prompt = "(hbnb) "
-    valid_classes = ["BaseModel","User", "Amenity", "Place", "Review", "State", "City"]
+    valid_classes = ["BaseModel", "User", "Amenity", "Place", "Review", 
+                     "State", "City"]
 
     def emptyline(self):
         """
@@ -39,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
         Quit command to exit the program
         """
         return True
-    
+
     def help_quit(self):
         """
         """
@@ -173,9 +174,6 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, att_name, att_val)
 
                 obj.save()
-
-
-
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
