@@ -45,7 +45,7 @@ class TestBaseModel(unittest.TestCase):
         """
         Constructor documentation
         """
-        doc = BaseModel.__init__.__doc__
+        doc = BaseModel().__init__.__doc__
         self.assertGreater(len(doc), 1)
 
     def test_first_task(self):
