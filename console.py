@@ -32,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
         """
         EOF (Ctrl+D) signal to exit the program
         """
-        print()
+        print("")
         return True
 
     def do_quit(self, arg):
@@ -45,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
         """
         """
         print("Quit command to exit the program")
-        print()
+        print("")
 
     def do_show(self, arg):
         """
@@ -170,7 +170,6 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, att_name, att_val)
 
                 obj.save()
-
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
