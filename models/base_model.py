@@ -15,17 +15,18 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         time_format = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
+            kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
+                                                    time_format)
+            kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
+                                                    time_format)
+
             for key, value in kwargs.items():
-                if key == "__class__":
-                    continue
-                elif key == "created_at" or key == "updated_at":
-                    setattr(self, key, datetime.strptime(value, time_format))
-                else:
+                if key != '__class__':
                     setattr(self, key, value)
         else:
             self.id = str(uuid4())
-            self.created_at = datetime.utcnow()
-            self.updated_at = datetime.utcnow()
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
             models.storage.new(self)
     
     def save(self):
