@@ -112,7 +112,8 @@ class TestBaseModel_save(unittest.TestCase):
         sleep(0.05)
         first_updated_at = bm.updated_at
         bm.save()
-        print(bm)
+        print(first_updated_at)
+        print(bm.updated_at)
         self.assertLess(first_updated_at, bm.updated_at)
 
     def test_two_saves(self):
