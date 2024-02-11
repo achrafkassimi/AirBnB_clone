@@ -52,7 +52,6 @@ class HBNBCommand(cmd.Cmd):
         Show the string representation of an instance
         """
         com = shlex.split(arg)
-
         if len(com) == 0:
             print("** class name missing **")
         elif com[0] not in self.valid_classes:
@@ -73,7 +72,6 @@ class HBNBCommand(cmd.Cmd):
         Create a new instance of BaseModel and save it to the JSON file
         """
         com = shlex.split(arg)
-
         if len(com) == 0:
             print("** class name missing **")
         elif com[0] not in self.valid_classes:
@@ -90,7 +88,6 @@ class HBNBCommand(cmd.Cmd):
         Delete an instance based on the class name and id
         """
         com = shlex.split(arg)
-
         if len(com) == 0:
             print("** class name missing **")
         elif com[0] not in self.valid_classes:
@@ -111,9 +108,7 @@ class HBNBCommand(cmd.Cmd):
         Print the string representation of all instances or a specific class.
         """
         obj = storage.all()
-
         com = shlex.split(arg)
-
         if len(com) == 0:
             for key, value in obj.items():
                 print(str(value))
@@ -129,10 +124,8 @@ class HBNBCommand(cmd.Cmd):
         Print the string representation of all class.
         """
         obj = storage.all()
-
         print("tous les class :")
         print(self.valid_classes)
-
         print("tous les class rempli:")
         for key, value in obj.items():
             print(key)
@@ -142,7 +135,6 @@ class HBNBCommand(cmd.Cmd):
         Update an instance by adding or updating an attribute.
         """
         com = shlex.split(arg)
-
         if len(com) == 0:
             print("** class name missing **")
         elif com[0] not in self.valid_classes:
@@ -151,7 +143,6 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             obj = storage.all()
-
             key = "{}.{}".format(com[0], com[1])
             if key not in obj:
                 print("** no instance found **")
@@ -168,7 +159,6 @@ class HBNBCommand(cmd.Cmd):
                 except Exception:
                     pass
                 setattr(obj, att_name, att_val)
-
                 obj.save()
 
 if __name__ == "__main__":
