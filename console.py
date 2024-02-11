@@ -137,7 +137,8 @@ class HBNBCommand(cmd.Cmd):
             'all': self.do_all,
             'show': self.do_show,
             'destroy': self.do_destroy,
-            'update': self.do_update
+            'update': self.do_update,
+            'count': self.do_count
         }
 
         if name_method in dict_method.keys():
@@ -146,6 +147,28 @@ class HBNBCommand(cmd.Cmd):
             # 'all User'
             # self.all(self, 'User')
         print("*** Unknown syntax : {} ***".format(arg))
+
+    def do_count(self, arg):
+        """
+        """
+        obj = storage.all()
+        # User.count() City.count()
+        # count User or count City
+        com = shlex.split(arg)
+        # ['User']
+        # com[0] = 'User'
+        name_class = com[0]
+        count = 0
+        if com:
+            if name_class in self.valid_classes:
+                for o in obj.values():
+                    if o.__class__.__name__ == name_class:
+                        count += 1
+                print(count)
+            else:
+                print("** invalid class name **")
+        else:
+            print("** class name missing **")
 
     def do_all_class(self, arg):
         """
