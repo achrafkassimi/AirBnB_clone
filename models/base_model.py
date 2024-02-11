@@ -6,12 +6,11 @@ from uuid import uuid4
 from datetime import datetime
 import models
 
-
 class BaseModel:
 	"""
 	Represents BaseModel of this project
 	"""
-	
+
 	def __init__(self, *args, **kwargs):
 		time_format = "%Y-%m-%dT%H:%M:%S.%f"
 		if kwargs:
