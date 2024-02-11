@@ -37,7 +37,6 @@ class TestFileStorage(unittest.TestCase):
         """
         Sets up the class test
         """
-
         self.b1 = BaseModel()
         self.a1 = Amenity()
         self.c1 = City()
@@ -56,7 +55,6 @@ class TestFileStorage(unittest.TestCase):
         """
         Tears down the testing environment
         """
-
         del self.b1
         del self.a1
         del self.c1
@@ -88,7 +86,6 @@ class TestFileStorage(unittest.TestCase):
         """
         check the type of storage
         """
-
         self.assertEqual(dict, type(self.storage.all()))
 
     def test_new(self):
@@ -106,7 +103,6 @@ class TestFileStorage(unittest.TestCase):
         """
         Checks if methods from Storage Engine works
         """
-
         with open("file.json") as f:
             dic = json.load(f)
 
@@ -116,7 +112,6 @@ class TestFileStorage(unittest.TestCase):
         """
         Checks if methods from Storage Engine works
         """
-
         with open("file.json") as f:
             self.assertTrue(len(f.read()) > 0)
 
@@ -124,7 +119,6 @@ class TestFileStorage(unittest.TestCase):
         """
         Check the docString each function
         """
-
         self.assertTrue(FileStorage.all.__doc__)
         self.assertTrue(hasattr(FileStorage, 'all'))
         self.assertTrue(FileStorage.new.__doc__)
