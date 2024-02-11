@@ -70,14 +70,14 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, arg):
         """
-        (hbnb) User.show("38f22813-2753-4d42-b37c-57a17f1e4f88")
-        (hbnb) User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", "first_name", "John")
-        (hbnb) User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89)
+        (hbnb) User.show("38f22813-2753...")
+        (hbnb) User.update("38f22813-2753...", "first_name", "John")
+        (hbnb) User.update("38f22813-2753...", "age", 89)
         """
         list_for_arg = arg.split(".")
         # User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89)
         # list_for_arg = ['User', 'update("38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89)']
-        # 
+        #
         # User.show(12w-241) output: ['User', 'show("12w-241")']
         # list_for_arg = ['User', 'show(12w-241)']
         #
