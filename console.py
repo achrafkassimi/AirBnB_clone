@@ -52,6 +52,7 @@ class HBNBCommand(cmd.Cmd):
         Show the string representation of an instance
         """
         com = shlex.split(arg)
+        # show User "12w-241"
         if len(com) == 0:
             print("** class name missing **")
         elif com[0] not in self.valid_classes:
@@ -66,6 +67,41 @@ class HBNBCommand(cmd.Cmd):
                 print(obj[key])
             else:
                 print("** no instance found **")
+
+    def default(self, arg):
+        """
+        """
+        list_for_arg = arg.split(".")
+        # User.show(12w-241) output: ['User', 'show("12w-241")']
+        # list_for_arg[0] = 'User'
+        # list_for_arg[1] = 'show(12w-241)'
+        # User.all() output: ['User', 'all()']
+        # list_for_arg[0] = 'User'
+        # list_for_arg[1] = 'all()'
+        name_class = list_for_arg[0]
+        com = list_for_arg[1].split("(")
+        # com[0] = 'all'
+        # com[1] = ')'
+        # com[0] = 'show'
+        # com[1] = '"12w-241")'
+        name_method = com[0]
+        xtra_arg_id = com[1].split(")")[0]
+        # ['"12w-241"', '']
+        dict_method = {
+            'all': self.do_all,
+            'show': self.do_show,
+            'destroy': self.do_destroy,
+            'update': self.do_update,
+            'count': self.do_count
+        }
+
+        if name_method in dict_method.keys():
+            return dict_method[name_method]("{} {}".format(
+                name_class, xtra_arg_id))
+            # all User or show User 123
+            # 'all User'
+            # self.all(self, 'User')
+        print("*** Unknown syntax : {} ***".format(arg))
 
     def do_create(self, arg):
         """
@@ -120,33 +156,6 @@ class HBNBCommand(cmd.Cmd):
             for key, value in obj.items():
                 if key.split('.')[0] == com[0]:
                     print(str(value))
-
-    def default(self, arg):
-        """
-        """
-        list_for_arg = arg.split(".")
-        # User.all() output: ['User', 'all()']
-        # list_for_arg[0] = 'User'
-        # list_for_arg[1] = 'all()'
-        name_class = list_for_arg[0]
-        com = list_for_arg[1].split('(')
-        # com[0] = 'all'
-        # com[1] = ')'
-        name_method = com[0]
-        dict_method = {
-            'all': self.do_all,
-            'show': self.do_show,
-            'destroy': self.do_destroy,
-            'update': self.do_update,
-            'count': self.do_count
-        }
-
-        if name_method in dict_method.keys():
-            return dict_method[name_method]("{} {}".format(name_class, ''))
-            # all User or show User 123
-            # 'all User'
-            # self.all(self, 'User')
-        print("*** Unknown syntax : {} ***".format(arg))
 
     def do_count(self, arg):
         """
