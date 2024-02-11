@@ -11,13 +11,15 @@ class BaseModel:
 	"""
 	Represents BaseModel of this project
 	"""
+	
 	def __init__(self, *args, **kwargs):
 		time_format = "%Y-%m-%dT%H:%M:%S.%f"
 		if kwargs:
-			kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-										time_format)
-			kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-										time_format)
+			kwargs['created_at'] = datetime.strptime(
+				kwargs['created_at'], time_format)
+			kwargs['updated_at'] = datetime.strptime(
+				kwargs['updated_at'], time_format)
+
 			for key, value in kwargs.items():
 				if key != '__class__':
 					setattr(self, key, value)
