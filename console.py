@@ -4,6 +4,8 @@ Module for console
 """
 import cmd
 import shlex
+import re
+import ast
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -13,6 +15,35 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 
+
+def split_curly_braces(xtra_arg_id):
+    """
+    Splits the curly braces for the update method 
+    xtra_arg_id = '"87f12...", "first_name", "John"'
+    xtra_arg_id = '"87f12...", {"first_name": "John", "age": 89}'
+    """
+
+    curly_braces = re.search(r"\{(.*?)\}", xtra_arg_id)
+    # print(curly_braces)
+    if curly_braces:
+        id_with_comma = shlex.split(xtra_arg_id[:curly_braces.span()[0]])
+        id = [i.strip(",") for i in id_with_comma][0]
+
+        str_data = curly_braces.group(1)
+        try:
+            arg_dict = ast.literal_eval("{"+ str_data +"}")
+        except Exception:
+            print("** invalid dictionary format **")
+            return
+        # print(id, arg_dict)
+        return id, arg_dict
+    else:
+        com = xtra_arg_id.split(",")
+        try:
+            # print(f"{com[0]}", f"{com[1]}", f"{com[2]}")
+            return f"{com[0]}", f"{com[1]}", f"{com[2]}"
+        except Exception:
+            print("** argument missing **")
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -93,8 +124,9 @@ class HBNBCommand(cmd.Cmd):
         # [""38f22813-2753...", "age", 89", '']
         # []
         # ['"12w-241"', '']
-        all_arg = xtra_arg_id.split(',')
+        # all_arg = xtra_arg_id.split(',')
         # all_arg = ["38f22813-2753...", "age", 89]
+
         dict_method = {
             'all': self.do_all,
             'show': self.do_show,
@@ -108,11 +140,24 @@ class HBNBCommand(cmd.Cmd):
                 return dict_method[name_method]("{} {}".format(
                     name_class, xtra_arg_id))
             else:
-                class_id = all_arg[0]
-                class_name = all_arg[1]
-                class_value = all_arg[2]
-                return dict_method[name_method]("{} {} {} {}".format(
-                    name_class, class_id, class_name, class_value))
+                obj_id, arg_dict = split_curly_braces(xtra_arg_id)
+                print(obj_id, arg_dict)
+                
+                try:
+                    if isinstance(arg_dict, str):
+                        print("str")
+                        attribute = arg_dict
+                        return dict_method[name_method]("{} {} {}".format(
+                    name_class, obj_id, attribute))
+                    elif isinstance(arg_dict, dict):
+                        # print("dict")
+                        # print(name_class, obj_id, arg_dict)
+                        # dict_attribute = arg_dict
+                        return dict_method[name_method]("{} {} {}".format(
+                    name_class, obj_id, arg_dict))
+                except Exception:
+                    print("** argument missing **")
+                
             # all User or show User 123
             # 'all User'
             # self.all(self, 'User')
@@ -228,13 +273,25 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
             else:
                 obj = obj[key]
-                att_name = com[2]
-                att_val = com[3]
-                try:
-                    att_val = eval(att_val)
-                except Exception:
-                    pass
-                setattr(obj, att_name, att_val)
+                curly_braces = re.search(r"\{(.*?)\}", arg)
+
+                if curly_braces:
+                    data_str = curly_braces.group(1)
+                    dict_arg = ast.literal_eval("{"+ data_str +"}")
+                    # {"frist_name": "john", "age": 49}
+                    attr_name = list(dict_arg.keys())
+                    attr_values = list(dict_arg.values())
+                    setattr(obj, attr_name[0],attr_values[0])
+                    setattr(obj, attr_name[1],attr_values[1])
+                else:
+                    att_name = com[2]
+                    att_val = com[3]
+                    try:
+                        att_val = eval(att_val)
+                    except Exception:
+                        pass
+                    setattr(obj, att_name, att_val)
+                
                 obj.save()
 
 
