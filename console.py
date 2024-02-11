@@ -134,17 +134,17 @@ class HBNBCommand(cmd.Cmd):
         # com[1] = ')'
         name_method = com[0]
         dict_method = {
-            'all' : self.do_all,
-            'show' : self.do_show,
-            'destroy' : self.do_destroy,
-            'update' : self.do_update
+            'all': self.do_all,
+            'show': self.do_show,
+            'destroy': self.do_destroy,
+            'update': self.do_update
         }
 
         if name_method in dict_method.keys():
             return dict_method[name_method]("{} {}".format(name_class, ''))
             # all User or show User 123
             # 'all User'
-            # self.all(self, 'User')    
+            # self.all(self, 'User')
         print("*** Unknown syntax : {} ***".format(arg))
 
     def do_all_class(self, arg):
