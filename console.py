@@ -70,23 +70,31 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, arg):
         """
+        (hbnb) User.show("38f22813-2753-4d42-b37c-57a17f1e4f88")
+        (hbnb) User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", "first_name", "John")
+        (hbnb) User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89)
         """
         list_for_arg = arg.split(".")
+        # User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89)
+        # list_for_arg = ['User', 'update("38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89)']
+        # 
         # User.show(12w-241) output: ['User', 'show("12w-241")']
-        # list_for_arg[0] = 'User'
-        # list_for_arg[1] = 'show(12w-241)'
+        # list_for_arg = ['User', 'show(12w-241)']
+        #
         # User.all() output: ['User', 'all()']
-        # list_for_arg[0] = 'User'
-        # list_for_arg[1] = 'all()'
+        # list_for_arg = ['User', 'all()']
         name_class = list_for_arg[0]
         com = list_for_arg[1].split("(")
-        # com[0] = 'all'
-        # com[1] = ')'
-        # com[0] = 'show'
-        # com[1] = '"12w-241")'
+        # com = ['update', '"38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89)']
+        # com = ['all', ')']
+        # com = ['show', '"12w-241")']
         name_method = com[0]
         xtra_arg_id = com[1].split(")")[0]
+        # [""38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89", '']
+        # []
         # ['"12w-241"', '']
+        all_arg = xtra_arg_id.split(',')
+        # all_arg = ["38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89]
         dict_method = {
             'all': self.do_all,
             'show': self.do_show,
@@ -96,12 +104,20 @@ class HBNBCommand(cmd.Cmd):
         }
 
         if name_method in dict_method.keys():
-            return dict_method[name_method]("{} {}".format(
-                name_class, xtra_arg_id))
+            if name_method != "update":
+                return dict_method[name_method]("{} {}".format(
+                    name_class, xtra_arg_id))
+            else:
+                class_id = all_arg[0]
+                class_name = all_arg[1]
+                class_value = all_arg[2]
+                return dict_method[name_method]("{} {} {} {}".format(
+                    name_class, class_id, class_name, class_value))
             # all User or show User 123
             # 'all User'
             # self.all(self, 'User')
         print("*** Unknown syntax : {} ***".format(arg))
+        return False
 
     def do_create(self, arg):
         """
