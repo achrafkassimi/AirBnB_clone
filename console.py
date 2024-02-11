@@ -75,8 +75,8 @@ class HBNBCommand(cmd.Cmd):
         (hbnb) User.update("38f22813-2753...", "age", 89)
         """
         list_for_arg = arg.split(".")
-        # User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89)
-        # list_for_arg = ['User', 'update("38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89)']
+        # User.update("38f22813-2753...", "age", 89)
+        # list_for_arg = ['User', 'update("38f22813-2753...", "age", 89)']
         #
         # User.show(12w-241) output: ['User', 'show("12w-241")']
         # list_for_arg = ['User', 'show(12w-241)']
@@ -85,16 +85,16 @@ class HBNBCommand(cmd.Cmd):
         # list_for_arg = ['User', 'all()']
         name_class = list_for_arg[0]
         com = list_for_arg[1].split("(")
-        # com = ['update', '"38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89)']
+        # com = ['update', '"38f22813-2753...", "age", 89)']
         # com = ['all', ')']
         # com = ['show', '"12w-241")']
         name_method = com[0]
         xtra_arg_id = com[1].split(")")[0]
-        # [""38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89", '']
+        # [""38f22813-2753...", "age", 89", '']
         # []
         # ['"12w-241"', '']
         all_arg = xtra_arg_id.split(',')
-        # all_arg = ["38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89]
+        # all_arg = ["38f22813-2753...", "age", 89]
         dict_method = {
             'all': self.do_all,
             'show': self.do_show,
