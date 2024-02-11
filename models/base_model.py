@@ -15,10 +15,9 @@ class BaseModel:
         time_format = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
             kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                    time_format)
+                                           time_format)
             kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                    time_format)
-
+                                           time_format)
             for key, value in kwargs.items():
                 if key != '__class__':
                     setattr(self, key, value)
@@ -37,9 +36,9 @@ class BaseModel:
 
     def to_dict(self):
         """
-	    Return the dictionary of the BaseModel instance.
+        Return the dictionary of the BaseModel instance
         Includes the key/value pair __class__ representing
-        the class name of the object.
+        the class name of the object
         """
         dit = self.__dict__.copy()
         dit["created_at"] = self.created_at.isoformat()
