@@ -154,10 +154,9 @@ class HBNBCommand(cmd.Cmd):
                         # print(name_class, obj_id, arg_dict)
                         # dict_attribute = arg_dict
                         return dict_method[name_method]("{} {} {}".format(
-                    name_class, obj_id, arg_dict))
+                                name_class, obj_id, arg_dict))
                 except Exception:
                     print("** argument missing **")
-                
             # all User or show User 123
             # 'all User'
             # self.all(self, 'User')
@@ -277,7 +276,7 @@ class HBNBCommand(cmd.Cmd):
 
                 if curly_braces:
                     data_str = curly_braces.group(1)
-                    dict_arg = ast.literal_eval("{"+ data_str +"}")
+                    dict_arg = ast.literal_eval("{" + data_str + "}")
                     # {"frist_name": "john", "age": 49}
                     attr_name = list(dict_arg.keys())
                     attr_values = list(dict_arg.values())
