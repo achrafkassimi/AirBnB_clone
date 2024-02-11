@@ -161,5 +161,6 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, att_name, att_val)
                 obj.save()
 
+
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
