@@ -18,7 +18,7 @@ from models.review import Review
 
 def split_curly_braces(xtra_arg_id):
     """
-    Splits the curly braces for the update method 
+    Splits the curly braces for the update method
     xtra_arg_id = '"87f12...", "first_name", "John"'
     xtra_arg_id = '"87f12...", {"first_name": "John", "age": 89}'
     """
@@ -31,7 +31,7 @@ def split_curly_braces(xtra_arg_id):
 
         str_data = curly_braces.group(1)
         try:
-            arg_dict = ast.literal_eval("{"+ str_data +"}")
+            arg_dict = ast.literal_eval("{" + str_data + "}")
         except Exception:
             print("** invalid dictionary format **")
             return
@@ -44,6 +44,7 @@ def split_curly_braces(xtra_arg_id):
             return f"{com[0]}", f"{com[1]}", f"{com[2]}"
         except Exception:
             print("** argument missing **")
+
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -142,13 +143,12 @@ class HBNBCommand(cmd.Cmd):
             else:
                 obj_id, arg_dict = split_curly_braces(xtra_arg_id)
                 print(obj_id, arg_dict)
-                
                 try:
                     if isinstance(arg_dict, str):
-                        print("str")
+                        # print("str")
                         attribute = arg_dict
                         return dict_method[name_method]("{} {} {}".format(
-                    name_class, obj_id, attribute))
+                                name_class, obj_id, attribute))
                     elif isinstance(arg_dict, dict):
                         # print("dict")
                         # print(name_class, obj_id, arg_dict)
@@ -281,8 +281,8 @@ class HBNBCommand(cmd.Cmd):
                     # {"frist_name": "john", "age": 49}
                     attr_name = list(dict_arg.keys())
                     attr_values = list(dict_arg.values())
-                    setattr(obj, attr_name[0],attr_values[0])
-                    setattr(obj, attr_name[1],attr_values[1])
+                    setattr(obj, attr_name[0], attr_values[0])
+                    setattr(obj, attr_name[1], attr_values[1])
                 else:
                     att_name = com[2]
                     att_val = com[3]
