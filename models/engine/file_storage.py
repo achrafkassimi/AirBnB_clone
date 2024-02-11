@@ -12,6 +12,7 @@ from models.review import Review
 from models.state import State
 from models.city import City
 
+
 class FileStorage:
     """
     Represent an abstracted storage engine
@@ -42,7 +43,7 @@ class FileStorage:
         """
         o_dict = FileStorage.__objects
         obj_dict = {obj: o_dict[obj].to_dict() for obj in o_dict.keys()}
-        
+
         with open(FileStorage.__file_path, "w") as f:
             json.dump(obj_dict, f)
 
