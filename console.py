@@ -290,7 +290,6 @@ class HBNBCommand(cmd.Cmd):
                     except Exception:
                         pass
                     setattr(obj, att_name, att_val)
-                
                 obj.save()
 
 
