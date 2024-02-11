@@ -118,15 +118,16 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             for key, value in obj.items():
-                if key.split('.')[0] .== com[0]:
+                if key.split('.')[0] == com[0]:
                     print(str(value))
 
     def default(self, arg):
         """
         """
-        list_for_arg = arg.split(".") # User.all() output: ['User', 'all()']
+        list_for_arg = arg.split(".")
+        # User.all() output: ['User', 'all()']
         # list_for_arg[0] = 'User'
-        # list_for_arg[1] = all()U
+        # list_for_arg[1] = 'all()'
         name_class = list_for_arg[0]
         com = list_for_arg[1].split('(')
         # com[0] = 'all'
@@ -139,13 +140,12 @@ class HBNBCommand(cmd.Cmd):
             'update' : self.do_update
         }
 
-        if name_method not in dict_method.keys():
+        if name_method in dict_method.keys():
             return dict_method[name_method]("{} {}".format(name_class, ''))
             # all User or show User 123
             # 'all User'
             # self.all(self, 'User')    
         print("*** Unknown syntax : {} ***".format(arg))
-
 
     def do_all_class(self, arg):
         """
